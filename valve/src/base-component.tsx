@@ -2,7 +2,7 @@
 import * as ReactDOM from 'react-dom';
 import * as Mdl from 'material-design-lite';
 
-export class BaseComponent extends React.Component<any, any> {
+export default class BaseComponent extends React.Component<any, any> {
 
     constructor() {
         super();
