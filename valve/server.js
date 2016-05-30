@@ -1,8 +1,15 @@
-"use strict";
-var http = require('http');
-var port = process.env.port || 1337;
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
-}).listen(port);
-//# sourceMappingURL=server.js.map
+﻿var express = require("express");
+
+var app = express();
+
+app.use(express.static("build"));
+
+app.get('/valve', function (req, res)
+{
+    res.send(JSON.stringify({ closeAt: Date.now() }));
+});
+
+app.listen(3001, function ()
+{
+    console.log("Express app listening at 3001");
+});
