@@ -15,14 +15,11 @@ export default class BaseComponent extends React.Component<any, any> {
 
         var element = ReactDOM.findDOMNode(this) as HTMLElement;
         componentHandler.upgradeElements(element);
-        console.log("ComponentDid mount in base-component");
     }
 
     componentDidUpdate() {
 
         var element = ReactDOM.findDOMNode(this) as HTMLElement;
         componentHandler.upgradeElements(element);
-        console.log("Component did update from base.");
     }
-    
 }

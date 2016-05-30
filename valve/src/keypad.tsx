@@ -29,79 +29,53 @@ export class Keypad extends BaseComponent {
 
     render() {
 
-        var style = {
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            maxWidth: '200px'
-        };
-
-        return <div style={style}>
-
-            <table>
-                <tr>
-                    <td>
+        return <div >
+            <div className="mdl-grid">
+                <div className="mdl-cell mdl-cell--4-col mdl-cell--4-offset-desktop mdl-cell--2-offset-tablet">
+                    <div className="keypad-row">
                         <Key
                             keyText='1'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                    <td>
                         <Key
                             keyText='2'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                    <td>
                         <Key
                             keyText='3'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </div>
+                    <div className="keypad-row">
                         <Key
                             keyText='4'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                    <td>
                         <Key
                             keyText='5'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                    <td>
                         <Key
                             keyText='6'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
+                    </div>
+                    <div className="keypad-row">
                         <Key
                             keyText='7'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                    <td>
                         <Key
                             keyText='8'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                    <td>
                         <Key
                             keyText='9'
                             onClick={this.onKeyClick}
                             />
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
     }
 }
