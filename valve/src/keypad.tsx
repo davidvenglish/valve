@@ -74,6 +74,20 @@ export class Keypad extends BaseComponent {
                             onClick={this.onKeyClick}
                             />
                     </div>
+                    <div className="keypad-row">
+                        <Key
+                            keyText='*'
+                            onClick={this.onKeyClick}
+                            />
+                        <Key
+                            keyText='0'
+                            onClick={this.onKeyClick}
+                            />
+                        <Key
+                            keyText='#'
+                            onClick={this.onKeyClick}
+                            />
+                    </div>
                 </div>
             </div>
         </div>
