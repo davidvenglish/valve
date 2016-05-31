@@ -46,8 +46,6 @@
     <Content Include="typings\globals\node\typings.json" />
     <Content Include="typings\globals\react-dom\typings.json" />
     <Content Include="typings\globals\react\typings.json" />
-    <TypeScriptCompile Include="server-hot.js" />
-    <TypeScriptCompile Include="server.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <TypeScriptCompile Include="typings\custom.d.ts" />

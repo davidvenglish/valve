@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     context: __dirname,
     entry: [
-        'webpack-dev-server/client?http://0.0.0.0:3000', // WebpackDevServer host and port
+        'webpack-dev-server/client?http://0.0.0.0:3001', // WebpackDevServer host and port
         'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
         path.resolve(__dirname, "src", "index.tsx")
     ],
@@ -24,7 +24,7 @@ module.exports = {
 			{ test: /\.eot$/, loader: "file-loader?name=fonts/[name].[ext]" },
 			{ test: /\.ttf$/, loader: "file-loader?name=fonts/[name].[ext]" },
 			{ test: /\.svg$/, loader: "file-loader?name=fonts/[name].[ext]" },
-			{ test: /\.tsx$/, loader: "ts-loader" }
+			{ test: /\.tsx$/, loaders: ["react-hot-loader", "ts-loader"] }
         ]
     },
     resolve: {

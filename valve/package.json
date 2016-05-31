@@ -9,7 +9,7 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "express": "node server.js",
+    "dev-server": "node dev-server.js",
     "hot": "webpack-dev-server --config webpack.hot-reload.config.js --hot --inline"
   },
   "devDependencies": {
