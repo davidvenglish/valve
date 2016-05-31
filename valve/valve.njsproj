@@ -66,6 +66,7 @@
     <Folder Include="typings\globals\react\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dev-server.js" />
     <Compile Include="webpack.hot-reload.config.js" />
     <Compile Include="webpack.config.js" />
   </ItemGroup>
