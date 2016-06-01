@@ -4,13 +4,12 @@
 
 body {
     background-color: #333333;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .keypad-row {
     display: flex;
     flex-direction: row;
-
 }
 
 .key {
@@ -27,8 +26,13 @@ body {
 
 .pin-status-button {
     font-size: 12pt;
-    color: #555555;
+    color: #777;
 }
+
 .is-entered {
     color: white !important;
+}
+
+.flat-button-color {
+    color: #777;
 }

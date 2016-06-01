@@ -39,8 +39,8 @@ export default class ValveStatusButton extends BaseComponent {
             <br />
 
             <div>
-                {dotClasses.map(function (dotClass) {
-                    return <i className={dotClass}>fiber_manual_record</i>
+                {dotClasses.map(function (dotClass, key) {
+                    return <i key={key} className={dotClass}>fiber_manual_record</i>
                 }, this) }
             </div>
 

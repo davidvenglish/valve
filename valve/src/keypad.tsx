@@ -15,6 +15,13 @@ export default class Keypad extends BaseComponent {
 
     }
 
+    handleOnDeleteClick = () => {
+
+        if (this.state.enteredNumbers.length > 0) {
+            this.setState({ enteredNumbers: this.state.enteredNumbers.slice(0, this.state.enteredNumbers.length - 1) })
+        }
+    }
+
     onKeyClick = (keyText: string) => {
 
         var loginPin = this.state.enteredNumbers.concat(keyText)
@@ -96,6 +103,19 @@ export default class Keypad extends BaseComponent {
                     keyText='#'
                     onClick={this.onKeyClick}
                     />
+            </div>
+
+            <div className="keypad-row">
+                <div className="key">
+                </div>
+                <div className="key">
+                </div>
+                <div className="key">
+                   
+                    <button onClick={this.handleOnDeleteClick} className="mdl-button mdl-js-button mdl-js-ripple-effect flat-button-color">
+                        Delete
+                    </button>
+                </div>
             </div>
         </div>
     }
