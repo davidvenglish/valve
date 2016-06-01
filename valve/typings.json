@@ -2,9 +2,13 @@
   "name": "valve",
   "dependencies": {},
   "globalDependencies": {
+    "classnames": "registry:dt/classnames#0.0.0+20160316155526",
     "material-design-lite": "registry:dt/material-design-lite#1.1.3+20160423150231",
     "node": "registry:dt/node#6.0.0+20160524002506",
     "react": "registry:dt/react#0.14.0+20160526134601",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040"
+  },
+  "globalDevDependencies": {
+    "classnames": "registry:dt/classnames#0.0.0+20160316155526"
   }
 }

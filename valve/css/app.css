@@ -1,8 +1,10 @@
 ﻿@import '../node_modules/material-design-lite/dist/material.css';
 @import '../node_modules/roboto-font/css/fonts.css';
+@import '../node_modules/material-design-icons/iconfont/material-icons.css';
 
 body {
     background-color: #333333;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif
 }
 
 .keypad-row {
@@ -17,4 +19,16 @@ body {
     margin-top: 2px;
     margin-bottom: 2px;
     margin-right: 2px;
+}
+
+.status-label {
+    color: #FFFFFF;
+}
+
+.pin-status-button {
+    font-size: 12pt;
+    color: #555555;
+}
+.is-entered {
+    color: white !important;
 }

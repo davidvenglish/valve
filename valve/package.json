@@ -9,14 +9,15 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "dev-server": "node dev-server.js",
-    "hot": "webpack-dev-server --config webpack.hot-reload.config.js --hot --inline"
+    "dev-server": "node dev-server.js"
   },
   "devDependencies": {
+    "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
     "express": "^4.13.4",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.18.0",
+    "material-design-icons": "^2.2.3",
     "material-design-lite": "^1.1.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

@@ -17,6 +17,7 @@ module.exports = {
 			{ test: /\.jpg$/, loader: "url-loader?name=img/[name].[ext]img/&limit=5000" },
 			{ test: /\.gif$/, loader: "url-loader?name=img/[name].[ext]img/&limit=5000" },
 			{ test: /\.woff$/, loader: "file-loader?name=fonts/[name].[ext]" },
+			{ test: /\.woff2$/, loader: "file-loader?name=fonts/[name].[ext]" },
 			{ test: /\.eot$/, loader: "file-loader?name=fonts/[name].[ext]" },
 			{ test: /\.ttf$/, loader: "file-loader?name=fonts/[name].[ext]" },
 			{ test: /\.svg$/, loader: "file-loader?name=fonts/[name].[ext]" },

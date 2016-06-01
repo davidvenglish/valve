@@ -1,8 +1,8 @@
 ﻿import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Keypad } from './keypad';
+import App from './app';
 
 var el = document.createElement('div');
 document.body.appendChild(el);
 
-ReactDOM.render(<Keypad />, el);
+ReactDOM.render(<App />, el);
