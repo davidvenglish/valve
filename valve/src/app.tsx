@@ -1,6 +1,9 @@
 ﻿import * as React from 'react';
 import BaseComponent from './base-component';
 import Keypad from './keypad';
+import * as injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 export default class App extends BaseComponent {
 

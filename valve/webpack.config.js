@@ -4,7 +4,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	context: __dirname,
-	entry: path.resolve(__dirname, "src", "index.tsx"),
+	entry: [
+		path.resolve(__dirname, "src", "index.tsx"),
+		path.resolve(__dirname, "css", "app.css")
+	],
 	output: {
 		path: path.join(__dirname, "build"),
 		filename: "app.js",
@@ -30,7 +33,9 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin(
 			{
-				title: "Draft Control"
+				title: "Draft Control",
+				template: "index-template.html",
+				inject:'body'
 			}
 		)
 	]

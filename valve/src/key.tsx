@@ -12,7 +12,7 @@ export default class Key extends BaseComponent {
     }
     render() {
 
-        return <button onClick={this.handleOnClick} className="key mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary">
+        return <button onTouchTap={this.handleOnClick} className="key mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary">
             {this.props.keyText}
         </button>
     }

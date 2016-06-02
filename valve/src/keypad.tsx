@@ -112,7 +112,7 @@ export default class Keypad extends BaseComponent {
                 </div>
                 <div className="key">
                    
-                    <button onClick={this.handleOnDeleteClick} className="mdl-button mdl-js-button mdl-js-ripple-effect flat-button-color">
+                    <button onTouchTap={this.handleOnDeleteClick} className="mdl-button mdl-js-button mdl-js-ripple-effect flat-button-color key delete-key">
                         Delete
                     </button>
                 </div>
