@@ -7,6 +7,17 @@ body {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+.vertical-aligner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-55%);
+    width: 100%;
+}
+
+.keypad {
+}
+
 .keypad-row {
     display: flex;
     flex-direction: row;

@@ -44,7 +44,7 @@ export default class Keypad extends BaseComponent {
 
     render() {
 
-        return <div >
+        return <div className="keypad">
             <ValveStatusButton
                 pin={this.state.enteredNumbers}/>
 

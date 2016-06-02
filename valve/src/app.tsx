@@ -9,10 +9,12 @@ export default class App extends BaseComponent {
     }
 
     render() {
-        return <div className="mdl-grid">
-            <div className="mdl-cell mdl-cell--4-col mdl-cell--4-offset-desktop mdl-cell--2-offset-tablet">
-                <Keypad />
+        return (<div className="vertical-aligner">
+            <div className="mdl-grid">
+                <div className="mdl-cell mdl-cell--4-col mdl-cell--4-offset-desktop mdl-cell--2-offset-tablet">
+                    <Keypad />
+                </div>
             </div>
-        </div >
+        </div>)
     }
 }
