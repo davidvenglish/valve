@@ -2,8 +2,10 @@
 import BaseComponent from './base-component';
 import Key from './key';
 import ValveStatusButton from './valve-status-button';
+import { createTryPinAction } from './actions'
+import { connect } from 'react-redux';
 
-export default class Keypad extends BaseComponent {
+class Keypad extends BaseComponent {
 
     constructor() {
         super();
@@ -29,6 +31,8 @@ export default class Keypad extends BaseComponent {
         if (loginPin.length == 4) {
 
             console.log("Dispatch login attempt and freeze UI using pin: " + loginPin);
+
+            this.props.tryPin(loginPin);
 
             // Reset the pin.
             this.setState({ enteredNumbers: [] });
@@ -111,7 +115,7 @@ export default class Keypad extends BaseComponent {
                 <div className="key">
                 </div>
                 <div className="key">
-                   
+
                     <button onTouchTap={this.handleOnDeleteClick} className="mdl-button mdl-js-button mdl-js-ripple-effect flat-button-color key delete-key">
                         Delete
                     </button>
@@ -120,3 +124,20 @@ export default class Keypad extends BaseComponent {
         </div>
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        rootState: state
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        tryPin: (pin: any) => {
+            dispatch(createTryPinAction(pin));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Keypad);

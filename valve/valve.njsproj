@@ -37,29 +37,43 @@
     <Content Include=".gitignore" />
     <Content Include="css\app.css" />
     <Content Include="index-template.html" />
+    <Content Include="src\actions.tsx" />
     <Content Include="src\app.tsx" />
     <Content Include="src\base-component.tsx" />
     <Content Include="src\index.tsx" />
     <Content Include="src\key.tsx" />
     <Content Include="src\keypad.tsx" />
+    <Content Include="src\reducer.tsx" />
     <Content Include="src\valve-status-button.tsx" />
     <Content Include="tsconfig.json" />
     <Content Include="typings.json" />
     <Content Include="typings\globals\classnames\typings.json" />
+    <Content Include="typings\globals\es6-promise\typings.json" />
+    <Content Include="typings\globals\immutable\typings.json" />
     <Content Include="typings\globals\material-design-lite\typings.json" />
     <Content Include="typings\globals\node\typings.json" />
     <Content Include="typings\globals\react-dom\typings.json" />
+    <Content Include="typings\globals\react-redux\typings.json" />
     <Content Include="typings\globals\react-tap-event-plugin\typings.json" />
     <Content Include="typings\globals\react\typings.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="typings\globals\redux-thunk\typings.json" />
+    <Content Include="typings\globals\redux\typings.json" />
+    <TypeScriptCompile Include="src\valve-state.tsx" />
     <TypeScriptCompile Include="typings\custom.d.ts" />
     <TypeScriptCompile Include="typings\globals\classnames\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\es6-promise\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\fetch\fetch.d.ts" />
+    <TypeScriptCompile Include="typings\globals\immutable\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\material-design-lite\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\react-dom\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\react-redux\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\react-tap-event-plugin\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\react\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\redux-thunk\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\redux\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -68,14 +82,21 @@
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\classnames\" />
+    <Folder Include="typings\globals\es6-promise\" />
+    <Folder Include="typings\globals\immutable\" />
     <Folder Include="typings\globals\material-design-lite\" />
+    <Folder Include="typings\globals\fetch\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\react-dom\" />
+    <Folder Include="typings\globals\react-redux\" />
     <Folder Include="typings\globals\react-tap-event-plugin\" />
     <Folder Include="typings\globals\react\" />
+    <Folder Include="typings\globals\redux-thunk\" />
+    <Folder Include="typings\globals\redux\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dev-server.js" />
+    <Compile Include="server.js" />
     <Compile Include="webpack.hot-reload.config.js" />
     <Compile Include="webpack.config.js" />
   </ItemGroup>
