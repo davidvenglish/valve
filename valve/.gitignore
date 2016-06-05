@@ -1,5 +1,5 @@
 ﻿node_modules/
 bin/
-build/
+public/
 obj/
 .ntvs_analysis.dat

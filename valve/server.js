@@ -3,7 +3,7 @@ var bodyParser = require("body-parser");
 
 var app = express();
 app.use(bodyParser.json());
-app.use(express.static("build"));
+app.use(express.static("public"));
 
 const ValveStates = {
 	CLOSED: 'closed',

@@ -9,7 +9,7 @@ module.exports = {
 		path.resolve(__dirname, "css", "app.css")
 	],
 	output: {
-		path: path.join(__dirname, "build"),
+		path: path.join(__dirname, "public"),
 		filename: "app.js",
 	},
 	devtool: "source-map",

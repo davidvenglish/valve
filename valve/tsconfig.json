@@ -7,7 +7,7 @@
     "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
-    "outDir": "build",
+    "outDir": "public",
     "sourceMap": true
   },
   "exclude": ["node_modules"]
