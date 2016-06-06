@@ -2,7 +2,7 @@
 import BaseComponent from './base-component';
 import Key from './key';
 import ValveStatusButton from './valve-status-button';
-import { createTryPinAction } from './actions'
+import * as Actions from './actions'
 import { connect } from 'react-redux';
 
 class Keypad extends BaseComponent {
@@ -50,6 +50,8 @@ class Keypad extends BaseComponent {
 
         return <div className="keypad">
             <ValveStatusButton
+                valveState={this.props.valveState}
+                closeAt={this.props.closeAt}
                 pin={this.state.enteredNumbers}/>
 
             <div className="keypad-row">
@@ -127,7 +129,8 @@ class Keypad extends BaseComponent {
 
 const mapStateToProps = (state) => {
     return {
-        rootState: state
+        valveState: state.get("current"),
+        closeAt: state.get("closeAt")
     }
 }
 
@@ -135,7 +138,7 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
         tryPin: (pin: any) => {
-            dispatch(createTryPinAction(pin));
+            dispatch(Actions.createUnlockAction(pin, '5'));
         }
     }
 }
