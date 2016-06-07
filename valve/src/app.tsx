@@ -1,10 +1,8 @@
 ﻿import * as React from 'react';
 import BaseComponent from './base-component';
-import Keypad from './keypad';
-import UnlockedStatus from './unlocked-status';
 import * as Actions from './actions';
-import { ValveStates } from './valve-state';
 import { connect } from 'react-redux';
+import Layout from './layout';
 
 class App extends BaseComponent {
 
@@ -13,20 +11,17 @@ class App extends BaseComponent {
     }
 
     render() {
-        return (<div className="vertical-aligner">
-            <div className="mdl-grid">
-                <div className="mdl-cell mdl-cell--4-col mdl-cell--4-offset-desktop mdl-cell--2-offset-tablet">
-                    {this.props.valveState == ValveStates.OPEN ? <UnlockedStatus closeAt={this.props.closeAt}/> :
-                        <Keypad
-                            valveState={this.props.valveState}
-                            closeAt={this.props.closeAt}
-                            invalidPinAttempt={this.props.invalidPinAttempt}
-                            tryPin={this.props.tryPin}
-                            />
-                    }
-                </div>
-            </div>
-        </div>)
+        return (
+            <Layout
+                valveState={this.props.valveState}
+                closeAt={this.props.closeAt}
+                invalidPin={this.props.invalidPin}
+                pin={this.props.pin}
+                addPinNumber={this.props.addPinNumber}
+                removePinNumber={this.props.removePinNumber}
+                tryPin={this.props.tryPin}
+                />
+        );
     }
 }
 
@@ -34,17 +29,24 @@ const mapStateToProps = (state) => {
     return {
         valveState: state.get("current"),
         closeAt: state.get("closeAt"),
-        invalidPinAttempt: state.get("invalidPinAttempt")
-    }
+        invalidPin: state.get("invalidPin"),
+        pin: state.get("pin").toJS()
+    };
 }
 
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        tryPin: (pin: any) => {
-            dispatch(Actions.createUnlockAction(pin, '5'));
+        addPinNumber: (number: string) => {
+            dispatch(Actions.createAddPinNumberAction(number));
+        },
+        removePinNumber: () => {
+            dispatch(Actions.createRemovePinNumberAction());
+        },
+        tryPin: (pin: string) => {
+            dispatch(Actions.createUnlockAction(pin, "5"));
         }
-    }
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,18 +5,15 @@ import { ActionTypes } from './actions';
 export const Reducer = (state: any = ValveState.InitialState, action: any) => {
 
     switch (action.type) {
-        case ActionTypes.SUCCESSFUL_UNLOCK:
-            console.log("Successful unlock in reducer");
-            return state.set("validPin", action.pin);
-        case ActionTypes.LOCK:
-            console.log("Lock action in reducer");
-            break
         case ActionTypes.VALVE_STATE_RECEIVED:
             console.log("Valve state received in reducer");
-            var newState = state.set("current", action.valveState.current).set("closeAt", action.valveState.closeAt);
-            return newState;
+            return state.set("current", action.valveState.current).set("closeAt", action.valveState.closeAt);
         case ActionTypes.INVALID_PIN:
-            return state.set("invalidPinAttempt", true);
+            return state.set("invalidPin", true);
+        case ActionTypes.SET_PIN_NUMBER:
+            return state.set("pin", Immutable.List<string>(action.number)).set("invalidPin", false);
+        case ActionTypes.REMOVE_PIN_NUMBER:
+            return (state.get("pin").size > 0) ? state.set("pin", state.get("pin").pop()).set("invalidPin", false) : state;
         default:
             return state;
     }

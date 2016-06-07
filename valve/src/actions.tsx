@@ -1,10 +1,49 @@
 ﻿export var ActionTypes = {
-    UNLOCK: 'UNLOCK',
     LOCK: 'LOCK',
-    SUCCESSFUL_UNLOCK: 'SUCCESSFUL_UNLOCK',
     VALVE_STATE_RECEIVED: 'VALVE_STATE_RECEIVED',
-    INVALID_PIN: 'INVALID_PIN'
+    INVALID_PIN: 'INVALID_PIN',
+    SET_PIN_NUMBER: 'SET_PIN_NUMBER',
+    REMOVE_PIN_NUMBER: 'REMOVE_PIN_NUMBER'
 };
+
+export var createAddPinNumberAction = (number: string) => {
+
+    return function (dispatch: Redux.Dispatch, getState: Function) {
+
+        var currentPin = getState().get("pin");
+        var newPin;
+
+        if (currentPin.size == 4) {
+            newPin = [number];
+        }
+        else {
+            newPin = currentPin.push(number).toJS();
+        }
+
+        dispatch(createSetPinNumberAction(newPin));
+    };
+};
+
+var createSetPinNumberAction = (number: Array<string>) => {
+
+    return {
+        type: ActionTypes.SET_PIN_NUMBER,
+        number: number
+    };
+}
+
+export var createRemovePinNumberAction = () => {
+
+    return {
+        type: ActionTypes.REMOVE_PIN_NUMBER
+    };
+}
+
+export var createInvalidPinAction = () => {
+    return {
+        type: ActionTypes.INVALID_PIN
+    };
+}
 
 export var createValveStateReceivedAction = (valveState: any) => {
     return {
@@ -26,20 +65,7 @@ export var createGetValveStateAction = () => {
             }
         }, function (e) {
             console.log("Fetch failed!", e);
-        });       
-    };
-}
-
-export var createSuccessfulUnlockAction = (pin: string) => {
-    return {
-        type: ActionTypes.SUCCESSFUL_UNLOCK,
-        pin: pin
-    };
-}
-
-export var createInvalidPinAction = () => {
-    return {
-        type: ActionTypes.INVALID_PIN
+        });
     };
 }
 
@@ -61,7 +87,6 @@ export var createUnlockAction = (pin: any, seconds: string) => {
                 res.json().then((data) => {
 
                     if (data.success) {
-                        dispatch(createSuccessfulUnlockAction(pin));
                         dispatch(createGetValveStateAction());
                     }
                     else {

@@ -9,6 +9,6 @@ export const ValveStates = {
 export var InitialState = Immutable.Map({
     current: ValveStates.UNKNOWN,
     closeAt: null,
-    validPin: null,
-    invalidPinAttempt: false
+    pin: Immutable.List<string>([]),
+    invalidPin: false
 });

@@ -50,6 +50,10 @@ button.key {
     color: white !important;
 }
 
+.invalid-pin {
+    color: red !important;
+}
+
 .flat-button-color {
     color: #777;
 }

@@ -8,47 +8,28 @@ export default class Keypad extends BaseComponent {
 
     constructor() {
         super();
-
-        this.state = {
-            enteredNumbers: [],
-            locked: true
-        };
-
     }
 
     handleOnDeleteClick = () => {
-
-        if (this.state.enteredNumbers.length > 0) {
-            this.setState({ enteredNumbers: this.state.enteredNumbers.slice(0, this.state.enteredNumbers.length - 1) })
-        }
+        this.props.removePinNumber();
     }
 
     onKeyClick = (keyText: string) => {
-
-        var loginPin;
-        if (this.state.enteredNumbers.length == 4) {
-            this.setState({ enteredNumbers: [keyText] });
-        }
-        else
-        {
-            var loginPin = this.state.enteredNumbers.concat(keyText)
-
-            if (loginPin.length == 4) {
-                this.props.tryPin(loginPin);
-            }
-
-            this.setState({ enteredNumbers: loginPin });
-        }
+        this.props.addPinNumber(keyText);
     }
 
     render() {
 
-        return <div className="keypad">
+        if (this.props.pin.length == 4) {
+            this.props.tryPin(this.props.pin);
+        }
+
+        return (<div className="keypad">
             
             <UnlockFeedbackIndicator
                 valveState={this.props.valveState}
-                pin={this.state.enteredNumbers}
-                invalidPinAttempt={this.props.invalidPinAttempt}/>
+                pin={this.props.pin}
+                invalidPin={this.props.invalidPin}/>
 
             <div className="keypad-row">
                 <Key
@@ -119,6 +100,6 @@ export default class Keypad extends BaseComponent {
                     </button>
                 </div>
             </div>
-        </div>
+        </div>)
     }
 }

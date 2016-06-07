@@ -9,10 +9,6 @@ export default class UnlockFeedbackIndicator extends BaseComponent {
         super();
     }
 
-    handleOnClick = () => {
-
-    }
-
     render() {
 
         var divStyle = {
@@ -24,7 +20,8 @@ export default class UnlockFeedbackIndicator extends BaseComponent {
             dotClasses[i] = classNames(
                 'pin-status-button',
                 'material-icons',
-                { 'is-entered': this.props.pin[i]}
+                { 'is-entered': this.props.pin[i] && !(this.props.invalidPin)},
+                { 'invalid-pin': this.props.invalidPin}
             );
         }
 
