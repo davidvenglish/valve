@@ -14,8 +14,6 @@ const store = createStore(
     applyMiddleware(thunk)
 );
 
-store.dispatch(Actions.createGetValveStateAction());
-
 var el = document.createElement('div');
 document.body.appendChild(el);
 
@@ -24,3 +22,5 @@ ReactDOM.render(
         <App />
     </Provider>,
     el);
+
+store.dispatch(Actions.createGetValveStateAction());

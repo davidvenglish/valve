@@ -6,7 +6,7 @@ var ValveStates = {
 };
 
 var state = {
-	current: ValveStates.UNKNOWN,
+	current: ValveStates.CLOSED,
 	closeAt: null
 };
 

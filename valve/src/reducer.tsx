@@ -13,9 +13,10 @@ export const Reducer = (state: any = ValveState.InitialState, action: any) => {
             break
         case ActionTypes.VALVE_STATE_RECEIVED:
             console.log("Valve state received in reducer");
-            return state
-                .set("current", action.valveState.current)
-                .set("closeAt", action.valveState.closeAt);
+            var newState = state.set("current", action.valveState.current).set("closeAt", action.valveState.closeAt);
+            return newState;
+        case ActionTypes.INVALID_PIN:
+            return state.set("invalidPinAttempt", true);
         default:
             return state;
     }

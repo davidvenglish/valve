@@ -2,7 +2,8 @@
     UNLOCK: 'UNLOCK',
     LOCK: 'LOCK',
     SUCCESSFUL_UNLOCK: 'SUCCESSFUL_UNLOCK',
-    VALVE_STATE_RECEIVED: 'VALVE_STATE_RECEIVED'
+    VALVE_STATE_RECEIVED: 'VALVE_STATE_RECEIVED',
+    INVALID_PIN: 'INVALID_PIN'
 };
 
 export var createValveStateReceivedAction = (valveState: any) => {
@@ -36,6 +37,12 @@ export var createSuccessfulUnlockAction = (pin: string) => {
     };
 }
 
+export var createInvalidPinAction = () => {
+    return {
+        type: ActionTypes.INVALID_PIN
+    };
+}
+
 export var createUnlockAction = (pin: any, seconds: string) => {
     return function (dispatch: Redux.Dispatch, getState: Function) {
 
@@ -54,12 +61,11 @@ export var createUnlockAction = (pin: any, seconds: string) => {
                 res.json().then((data) => {
 
                     if (data.success) {
-                        console.log("Response from server: " + data.success);
                         dispatch(createSuccessfulUnlockAction(pin));
                         dispatch(createGetValveStateAction());
                     }
                     else {
-                        console.log("Response from server: " + data.message);
+                        dispatch(createInvalidPinAction());
                     }
                 });
             }

@@ -1,11 +1,10 @@
 ﻿import * as React from 'react';
 import BaseComponent from './base-component';
 import Key from './key';
-import ValveStatusButton from './valve-status-button';
+import UnlockFeedbackIndicator from './unlock-feedback-indicator';
 import * as Actions from './actions'
-import { connect } from 'react-redux';
 
-class Keypad extends BaseComponent {
+export default class Keypad extends BaseComponent {
 
     constructor() {
         super();
@@ -26,33 +25,30 @@ class Keypad extends BaseComponent {
 
     onKeyClick = (keyText: string) => {
 
-        var loginPin = this.state.enteredNumbers.concat(keyText)
-
-        if (loginPin.length == 4) {
-
-            console.log("Dispatch login attempt and freeze UI using pin: " + loginPin);
-
-            this.props.tryPin(loginPin);
-
-            // Reset the pin.
-            this.setState({ enteredNumbers: [] });
+        var loginPin;
+        if (this.state.enteredNumbers.length == 4) {
+            this.setState({ enteredNumbers: [keyText] });
         }
-        else {
+        else
+        {
+            var loginPin = this.state.enteredNumbers.concat(keyText)
 
-            console.log("Pin: " + loginPin);
-            // Set the state to the new pin, and let the user continue.
+            if (loginPin.length == 4) {
+                this.props.tryPin(loginPin);
+            }
+
             this.setState({ enteredNumbers: loginPin });
         }
-
     }
 
     render() {
 
         return <div className="keypad">
-            <ValveStatusButton
+            
+            <UnlockFeedbackIndicator
                 valveState={this.props.valveState}
-                closeAt={this.props.closeAt}
-                pin={this.state.enteredNumbers}/>
+                pin={this.state.enteredNumbers}
+                invalidPinAttempt={this.props.invalidPinAttempt}/>
 
             <div className="keypad-row">
                 <Key
@@ -126,21 +122,3 @@ class Keypad extends BaseComponent {
         </div>
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        valveState: state.get("current"),
-        closeAt: state.get("closeAt")
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-
-    return {
-        tryPin: (pin: any) => {
-            dispatch(Actions.createUnlockAction(pin, '5'));
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Keypad);

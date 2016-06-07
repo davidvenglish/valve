@@ -44,7 +44,8 @@
     <Content Include="src\key.tsx" />
     <Content Include="src\keypad.tsx" />
     <Content Include="src\reducer.tsx" />
-    <Content Include="src\valve-status-button.tsx" />
+    <Content Include="src\unlocked-status.tsx" />
+    <Content Include="src\unlock-feedback-indicator.tsx" />
     <Content Include="tsconfig.json" />
     <Content Include="typings.json" />
     <Content Include="typings\globals\classnames\typings.json" />
