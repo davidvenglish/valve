@@ -5,8 +5,8 @@ import * as ValveStates from './valve-state';
 
 export default class UnlockedStatus extends BaseComponent {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
     }
 
     handleOnClick = () => {
@@ -21,10 +21,10 @@ export default class UnlockedStatus extends BaseComponent {
 
         return <div style={divStyle}>
             <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                <i style={{ color: 'green'}} className="material-icons">lock_open</i>
+                <i style={{ color: 'green' }} className="material-icons">lock_open</i>
             </button>
 
-            <div>Close at: {this.props.closeAt}</div>
+            <div>{this.props.timeUntilClose}</div>
         </div>
     }
 }

@@ -6,15 +6,15 @@ import Layout from './layout';
 
 class App extends BaseComponent {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
     }
 
     render() {
         return (
             <Layout
                 valveState={this.props.valveState}
-                closeAt={this.props.closeAt}
+                timeUntilClose={this.props.timeUntilClose}
                 invalidPin={this.props.invalidPin}
                 pin={this.props.pin}
                 addPinNumber={this.props.addPinNumber}
@@ -28,7 +28,7 @@ class App extends BaseComponent {
 const mapStateToProps = (state) => {
     return {
         valveState: state.get("current"),
-        closeAt: state.get("closeAt"),
+        timeUntilClose: state.get("timeUntilClose"),
         invalidPin: state.get("invalidPin"),
         pin: state.get("pin").toJS()
     };
@@ -36,6 +36,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
+    var lastPin = null;
     return {
         addPinNumber: (number: string) => {
             dispatch(Actions.createAddPinNumberAction(number));
@@ -43,8 +44,8 @@ const mapDispatchToProps = (dispatch) => {
         removePinNumber: () => {
             dispatch(Actions.createRemovePinNumberAction());
         },
-        tryPin: (pin: string) => {
-            dispatch(Actions.createUnlockAction(pin, "5"));
+        tryPin: (pin: any) => {
+            dispatch(Actions.createUnlockAction(pin, "10"));
         }
     };
 }

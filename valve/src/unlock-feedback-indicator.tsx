@@ -5,8 +5,8 @@ import * as ValveStates from './valve-state';
 
 export default class UnlockFeedbackIndicator extends BaseComponent {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
     }
 
     render() {

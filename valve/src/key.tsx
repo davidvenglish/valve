@@ -3,8 +3,8 @@ import BaseComponent from './base-component';
 
 export default class Key extends BaseComponent {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
     }
 
     handleOnClick = () => {

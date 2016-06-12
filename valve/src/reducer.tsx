@@ -6,8 +6,7 @@ export const Reducer = (state: any = ValveState.InitialState, action: any) => {
 
     switch (action.type) {
         case ActionTypes.VALVE_STATE_RECEIVED:
-            console.log("Valve state received in reducer");
-            return state.set("current", action.valveState.current).set("closeAt", action.valveState.closeAt);
+            return state.set("current", action.valveState.current).set("timeUntilClose", action.valveState.timeUntilClose);
         case ActionTypes.INVALID_PIN:
             return state.set("invalidPin", true);
         case ActionTypes.SET_PIN_NUMBER:

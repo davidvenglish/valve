@@ -57,7 +57,7 @@ export var createGetValveStateAction = () => {
         fetch("/valve-state").then(function (res) {
             if (res.ok) {
                 res.json().then(function (data) {
-                    console.log("Received response from /valve-state");
+                    console.log(data);
                     dispatch(createValveStateReceivedAction(data));
                 });
             } else {
@@ -87,6 +87,7 @@ export var createUnlockAction = (pin: any, seconds: string) => {
                 res.json().then((data) => {
 
                     if (data.success) {
+                        dispatch(createSetPinNumberAction([]));
                         dispatch(createGetValveStateAction());
                     }
                     else {

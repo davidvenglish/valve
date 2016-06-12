@@ -6,8 +6,8 @@ import * as Actions from './actions'
 
 export default class Keypad extends BaseComponent {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
     }
 
     handleOnDeleteClick = () => {

@@ -4,8 +4,8 @@ import * as Mdl from 'material-design-lite';
 
 export default class BaseComponent extends React.Component<any, any> {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
 
         var mdl: any = Mdl;
         this.state = {};

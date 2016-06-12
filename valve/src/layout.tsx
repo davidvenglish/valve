@@ -7,18 +7,18 @@ import { ValveStates } from './valve-state';
 
 export default class Layout extends BaseComponent {
 
-    constructor() {
-        super();
+    constructor(props: any) {
+        super(props);
     }
 
     render() {
         return (<div className="vertical-aligner">
             <div className="mdl-grid">
                 <div className="mdl-cell mdl-cell--4-col mdl-cell--4-offset-desktop mdl-cell--2-offset-tablet">
-                    {this.props.valveState == ValveStates.OPEN ? <UnlockedStatus closeAt={this.props.closeAt}/> :
+                    {this.props.valveState == ValveStates.OPEN ? <UnlockedStatus timeUntilClose={this.props.timeUntilClose}/> :
                         <Keypad
                             valveState={this.props.valveState}
-                            closeAt={this.props.closeAt}
+                            timeUntilClose={this.props.timeUntilClose}
                             invalidPin={this.props.invalidPin}
                             pin={this.props.pin}
                             addPinNumber={this.props.addPinNumber}
