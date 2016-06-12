@@ -5,6 +5,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 	context: __dirname,
 	entry: [
+		'whatwg-fetch',
+		'es6-promise',
 		path.resolve(__dirname, "src", "index.tsx"),
 		path.resolve(__dirname, "css", "app.css")
 	],
@@ -37,10 +39,6 @@ module.exports = {
 				template: "index-template.html",
 				inject:'body'
 			}
-		),
-		new webpack.ProvidePlugin({
-			'Promise': 'es6-promise',
-			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-		})
+		)
 	]
 };

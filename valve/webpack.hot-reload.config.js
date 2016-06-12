@@ -7,6 +7,8 @@ module.exports = {
 	entry: [
 		'webpack-dev-server/client?http://0.0.0.0:3001', // WebpackDevServer host and port
 		'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+		'whatwg-fetch',
+		'es6-promise',
 		path.resolve(__dirname, "src", "index.tsx"),
 		path.resolve(__dirname, "css", "app.css")
 	],
@@ -38,10 +40,6 @@ module.exports = {
 				title: "Draft Control"
 			}
 		),
-		new webpack.ProvidePlugin({
-			'Promise': 'es6-promise',
-			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-		}),
 		new webpack.HotModuleReplacementPlugin()
 	]
 };

@@ -7,6 +7,8 @@ import * as Actions from './actions';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Reducer } from './reducer';
+
+
 injectTapEventPlugin();
 
 const store = createStore(
@@ -14,13 +16,19 @@ const store = createStore(
     applyMiddleware(thunk)
 );
 
-var el = document.createElement('div');
-document.body.appendChild(el);
+try {
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    el);
+    var el = document.createElement('div');
+    document.body.appendChild(el);
 
-store.dispatch(Actions.createGetValveStateAction());
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        el);
+
+    store.dispatch(Actions.createGetValveStateAction());
+}
+catch (e) {
+    alert(e);
+}
