@@ -23,17 +23,19 @@ export default class UnlockedStatus extends BaseComponent {
             textAlign: 'center'
         };
 
-        return <div style={divStyle}>
+        return <div className="status" style={divStyle}>
 
-            <div>{this.props.timeUntilClose}</div>
+            <div className="countdown">{this.props.timeUntilClose}</div>
 
-            <button className="mdl-button mdl-js-button mdl-button--icon">
+            <div className="status-button-wrapper">
+            <button className="mdl-button mdl-js-button mdl-button--icon large-button">
                 <i style={{ color: 'green' }} className="material-icons">lock_open</i>
             </button>
 
-            <button onTouchTap={this.handleLock} className="mdl-button mdl-js-button mdl-button--icon">
+            <button onTouchTap={this.handleLock} className="mdl-button mdl-js-button mdl-button--icon large-button">
                 <i style={{ color: 'red' }} className="material-icons">lock</i>
             </button>
+                </div>
         </div>
     }
 }

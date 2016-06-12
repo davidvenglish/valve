@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(Actions.createRemovePinNumberAction());
         },
         tryPin: (pin: any) => {
-            dispatch(Actions.createUnlockAction(pin, "10"));
+            dispatch(Actions.createUnlockAction(pin, "1000"));
         },
         extendUnlock: (seconds: string) => {
             dispatch(Actions.createUnlockAction(null, seconds)); 

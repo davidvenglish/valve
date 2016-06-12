@@ -35,6 +35,9 @@ export default class UnlockFeedbackIndicator extends BaseComponent {
             lockData.icon = '?';
         }
 
+        lockData.style.fontSize = '45px';
+        lockData.style.textShadow = '1px 1px 1px black';
+
         return <div style={divStyle}>
                 <i style={lockData.style} className="material-icons">{lockData.icon}</i>
             <br />
