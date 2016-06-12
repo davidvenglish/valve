@@ -20,6 +20,8 @@ class App extends BaseComponent {
                 addPinNumber={this.props.addPinNumber}
                 removePinNumber={this.props.removePinNumber}
                 tryPin={this.props.tryPin}
+                lock={this.props.lock}
+                extendUnlock={this.props.extendUnlock}
                 />
         );
     }
@@ -36,7 +38,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
-    var lastPin = null;
     return {
         addPinNumber: (number: string) => {
             dispatch(Actions.createAddPinNumberAction(number));
@@ -46,6 +47,13 @@ const mapDispatchToProps = (dispatch) => {
         },
         tryPin: (pin: any) => {
             dispatch(Actions.createUnlockAction(pin, "10"));
+        },
+        extendUnlock: (seconds: string) => {
+            dispatch(Actions.createUnlockAction(null, seconds)); 
+        },
+        lock: () =>
+        {
+            dispatch(Actions.createLockAction());
         }
     };
 }

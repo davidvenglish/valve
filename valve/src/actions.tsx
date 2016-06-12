@@ -1,9 +1,31 @@
 ﻿export var ActionTypes = {
-    LOCK: 'LOCK',
     VALVE_STATE_RECEIVED: 'VALVE_STATE_RECEIVED',
     INVALID_PIN: 'INVALID_PIN',
     SET_PIN_NUMBER: 'SET_PIN_NUMBER',
     REMOVE_PIN_NUMBER: 'REMOVE_PIN_NUMBER'
+};
+
+export var createLockAction = () => {
+    return function (dispatch: Redux.Dispatch, getState: Function) {
+
+        fetch('/lock', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => {
+            if (res.ok) {
+            }
+            else {
+                console.log("Response error: " + res.status);
+            }
+        },
+            (res) => {
+                console.log("Fetch failed.");
+            });
+    }
+
 };
 
 export var createAddPinNumberAction = (number: string) => {

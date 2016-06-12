@@ -1,16 +1,37 @@
-﻿
+﻿var closeValveTimeoutId = null;
+
 var ValveStates = {
 	CLOSED: 'closed',
 	OPEN: 'open',
 	UNKNOWN: 'unknown'
 };
 
+function closeValve() {
+	
+	// Lock via pin.
+	state.current = ValveStates.CLOSED;
+	state.timeUntilClose = null;
+	clearTimeout(closeValveTimoutId);
+}
+
+function openValve(seconds) {
+	
+	// Set the pin
+	state.current = ValveStates.OPEN;
+	delayedCloseValve(seconds);
+}
+
+function readValveState() {
+	
+	// Actually read the pin right here.
+	return state.current;
+}
+
 var state = {
 	current: ValveStates.CLOSED,
 	closeAt: null
 };
 
-var closeValveTimeoutId = null;
 function closeValve(minutes) {
 	// Set the pin 
 	
@@ -27,47 +48,40 @@ function delayedCloseValve(seconds) {
 	state.closeAt = Date.now() + millisecondsUntilClose;
 	closeValveTimeoutId = setTimeout(closeValve, millisecondsUntilClose);
 }
-
 module.exports = {
 	
 	ValveStates: ValveStates,
-	
 	getValveState: function () {
 		
 		// Read the actual pin?
+		var currentState = readValveState();
 		
-		if (state.current == ValveStates.OPEN) {
+		if (currentState == ValveStates.OPEN) {
+
 			var totalSecondsLeft = (state.closeAt - Date.now()) / 1000;
 			var minutesLeft = Math.floor(totalSecondsLeft / 60);
-			
-
 			var secondsLeft = '' + Math.floor(totalSecondsLeft - (minutesLeft * 60));
 			
 			return {
-				current: ValveStates.OPEN,
+				current: currentState,
 				timeUntilClose: minutesLeft + ":" + (secondsLeft.length == 1 ? ("0" + secondsLeft) : secondsLeft)
 			};
 		}
 		else {
 			return {
-				current: state.current
+				current: currentState
 			};
 		}
 	},
 	
-	lockValve: function () {
-		// Lock via pin.
-		state.current = ValveStates.CLOSED;
-		state.timeUntilClose = null;
+	lock: function () {
+		closeValve();
 
-		// call read state function?
-	},
-	loadStateFromFile: function () {
 	},
 	unlock: function (seconds) {
-		// Set the pin
-		
-		state.current = ValveStates.OPEN;
-		delayedCloseValve(seconds);
+		openValve(seconds);
+	},
+	isValveOpen: function () {
+		return (readValveState() === ValveStates.OPEN);
 	}
 };

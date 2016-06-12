@@ -17,26 +17,38 @@ function hasValidPin(req, res) {
 		return true;
 	}
 	else {
-		res.send(JSON.stringify({
-			success: false,
-			message: "Invalid pin"
-		}));
 		return false;
 	}
 }
 
 app.post('/unlock', function (req, res) {
 	
-	if (hasValidPin(req, res)) {
+	if (hasValidPin(req, res) || valveController.isValveOpen()) {
 		
 		var unlockTime = req.body.unlockTime || 5;
 		
 		valveController.unlock(unlockTime);
-
+		
 		res.send(JSON.stringify({
 			success: true
 		}));
 	}
+	else {
+		res.send(JSON.stringify({
+			success: false,
+			message: "Invalid pin"
+		}));
+		return false;
+	}
+});
+
+app.post('/lock', function (req, res) {
+	
+	valveController.lock();
+	
+	res.send(JSON.stringify({
+		success: true
+	}));
 });
 
 app.get('/valve-state', function (req, res) {

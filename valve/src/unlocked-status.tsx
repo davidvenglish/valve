@@ -9,8 +9,12 @@ export default class UnlockedStatus extends BaseComponent {
         super(props);
     }
 
-    handleOnClick = () => {
+    handleLock = () => {
+        this.props.lock();
+    }
 
+    handleExtend = (seconds) => {
+        this.props.extendUnlock(seconds);
     }
 
     render() {
@@ -20,11 +24,16 @@ export default class UnlockedStatus extends BaseComponent {
         };
 
         return <div style={divStyle}>
-            <button className="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+
+            <div>{this.props.timeUntilClose}</div>
+
+            <button className="mdl-button mdl-js-button mdl-button--icon">
                 <i style={{ color: 'green' }} className="material-icons">lock_open</i>
             </button>
 
-            <div>{this.props.timeUntilClose}</div>
+            <button onTouchTap={this.handleLock} className="mdl-button mdl-js-button mdl-button--icon">
+                <i style={{ color: 'red' }} className="material-icons">lock</i>
+            </button>
         </div>
     }
 }
