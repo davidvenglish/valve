@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="dev-server.js" />
     <Compile Include="server.js" />
+    <Compile Include="valve-controller-config.js" />
     <Compile Include="valve-controller.js" />
     <Compile Include="webpack.hot-reload.config.js" />
     <Compile Include="webpack.config.js" />

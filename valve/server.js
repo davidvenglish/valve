@@ -7,27 +7,11 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-
-
-function hasValidPin(req, res) {
-	var pin = req.body.pin;
-	console.log("Pin received on server: " + pin);
-	
-	if (req.body.pin == "1,2,3,4") {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
-
 app.post('/unlock', function (req, res) {
 	
-	if (hasValidPin(req, res) || valveController.isValveOpen()) {
+	if (valveController.hasValidPin(req.body.pin) || valveController.isValveOpen()) {
 		
-		var unlockTime = req.body.unlockTime || 5;
-		
-		valveController.unlock(unlockTime);
+		valveController.unlock();
 		
 		res.send(JSON.stringify({
 			success: true

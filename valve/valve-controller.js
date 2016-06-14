@@ -1,24 +1,29 @@
-﻿var closeValveTimeoutId = null;
+﻿var config = require("./valve-controller-config.js");
+
+var closeValveTimeoutId = null;
 
 var ValveStates = {
 	CLOSED: 'closed',
 	OPEN: 'open',
-	UNKNOWN: 'unknown'
 };
 
 function closeValve() {
 	
-	// Lock via pin.
+	// Actually set the pin on the PI
 	state.current = ValveStates.CLOSED;
 	state.timeUntilClose = null;
 	clearTimeout(closeValveTimoutId);
 }
 
-function openValve(seconds) {
+function openValve() {
 	
-	// Set the pin
-	state.current = ValveStates.OPEN;
-	delayedCloseValve(seconds);
+	if (readValveState() == ValveStates.CLOSED) {
+		
+		// Actually set the pin on the PI
+		
+		state.current = ValveStates.OPEN;
+	}
+	delayedCloseValve();
 }
 
 function readValveState() {
@@ -40,14 +45,14 @@ function closeValve(minutes) {
 	state.closeAt = null;
 }
 
-function delayedCloseValve(seconds) {
+function delayedCloseValve() {
 	
 	clearTimeout(closeValveTimeoutId)
-	seconds = parseInt(seconds);
-	var millisecondsUntilClose = seconds * 1000;
+	var millisecondsUntilClose = config.UNLOCK_SECONDS * 1000;
 	state.closeAt = Date.now() + millisecondsUntilClose;
 	closeValveTimeoutId = setTimeout(closeValve, millisecondsUntilClose);
 }
+
 module.exports = {
 	
 	ValveStates: ValveStates,
@@ -57,7 +62,7 @@ module.exports = {
 		var currentState = readValveState();
 		
 		if (currentState == ValveStates.OPEN) {
-
+			
 			var totalSecondsLeft = (state.closeAt - Date.now()) / 1000;
 			var minutesLeft = Math.floor(totalSecondsLeft / 60);
 			var secondsLeft = '' + Math.floor(totalSecondsLeft - (minutesLeft * 60));
@@ -73,15 +78,17 @@ module.exports = {
 			};
 		}
 	},
-	
 	lock: function () {
 		closeValve();
-
 	},
-	unlock: function (seconds) {
-		openValve(seconds);
+	unlock: function () {
+		openValve();
 	},
 	isValveOpen: function () {
 		return (readValveState() === ValveStates.OPEN);
+	},
+	hasValidPin: function (pin) {
+		console.log("Checking pin '" + pin + "' in valve Controller");
+		return pin == config.PIN;
 	}
 };

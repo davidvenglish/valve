@@ -90,7 +90,7 @@ export var createGetValveStateAction = () => {
     };
 }
 
-export var createUnlockAction = (pin: any, seconds: string) => {
+export var createUnlockAction = (pin: any) => {
     return function (dispatch: Redux.Dispatch, getState: Function) {
 
         fetch('/unlock', {
@@ -100,8 +100,7 @@ export var createUnlockAction = (pin: any, seconds: string) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                pin: pin,
-                unlockTime: seconds
+                pin: pin
             })
         }).then((res) => {
             if (res.ok) {

@@ -13,8 +13,9 @@ export default class UnlockedStatus extends BaseComponent {
         this.props.lock();
     }
 
-    handleExtend = (seconds) => {
-        this.props.extendUnlock(seconds);
+    handleExtend = () => {
+
+        this.props.extendUnlock();
     }
 
     render() {
@@ -28,14 +29,15 @@ export default class UnlockedStatus extends BaseComponent {
             <div className="countdown">{this.props.timeUntilClose}</div>
 
             <div className="status-button-wrapper">
-            <button className="mdl-button mdl-js-button mdl-button--icon large-button">
-                <i style={{ color: 'green' }} className="material-icons">lock_open</i>
-            </button>
 
-            <button onTouchTap={this.handleLock} className="mdl-button mdl-js-button mdl-button--icon large-button">
-                <i style={{ color: 'red' }} className="material-icons">lock</i>
-            </button>
-                </div>
+                <button onTouchTap={this.handleExtend} className="mdl-button mdl-js-button mdl-button--icon large-button">
+                    <i style={{ color: 'green' }} className="material-icons">lock_open</i>
+                </button>
+
+                <button onTouchTap={this.handleLock} className="mdl-button mdl-js-button mdl-button--icon large-button">
+                    <i style={{ color: 'red' }} className="material-icons">lock</i>
+                </button>
+            </div>
         </div>
     }
 }
