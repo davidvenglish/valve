@@ -1,11 +1,20 @@
-﻿var DEFAULT_UNLOCK_TIME = 5;
+﻿var fs = require('fs');
+var https = require('https');
 var express = require("express");
+var app = express();
+
 var bodyParser = require("body-parser");
 var valveController = require("./valve-controller.js");
 
-var app = express();
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
+https.createServer({
+	key: fs.readFileSync('key.pem'),
+	cert: fs.readFileSync('cert.pem')
+}, app).listen(443, function () {
+	console.log("Server listening on 443");
+});
 
 app.post('/unlock', function (req, res) {
 	
@@ -37,8 +46,4 @@ app.post('/lock', function (req, res) {
 
 app.get('/valve-state', function (req, res) {
 	res.send(JSON.stringify(valveController.getValveState()));
-});
-
-app.listen(3000, function () {
-	console.log("Express app listening at 3000");
 });

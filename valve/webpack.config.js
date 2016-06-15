@@ -14,7 +14,6 @@ module.exports = {
 		path: path.join(__dirname, "public"),
 		filename: "app.js",
 	},
-	devtool: "source-map",
 	module: {
 		loaders: [
 			{ test: /\.css$/, loader: "style-loader!css-loader" },
@@ -39,6 +38,7 @@ module.exports = {
 				template: "index-template.html",
 				inject:'body'
 			}
-		)
+		),
+		new webpack.optimize.UglifyJsPlugin()
 	]
 };

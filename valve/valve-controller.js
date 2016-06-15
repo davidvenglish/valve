@@ -1,5 +1,4 @@
 ﻿var config = require("./valve-controller-config.js");
-
 var closeValveTimeoutId = null;
 
 var ValveStates = {
@@ -7,12 +6,17 @@ var ValveStates = {
 	OPEN: 'open',
 };
 
+var state = {
+	current: ValveStates.CLOSED,
+	closeAt: null
+};
+
 function closeValve() {
 	
 	// Actually set the pin on the PI
 	state.current = ValveStates.CLOSED;
 	state.timeUntilClose = null;
-	clearTimeout(closeValveTimoutId);
+	clearTimeout(closeValveTimeoutId);
 }
 
 function openValve() {
@@ -30,19 +34,6 @@ function readValveState() {
 	
 	// Actually read the pin right here.
 	return state.current;
-}
-
-var state = {
-	current: ValveStates.CLOSED,
-	closeAt: null
-};
-
-function closeValve(minutes) {
-	// Set the pin 
-	
-	// Read the state? On state change?
-	state.current = ValveStates.CLOSED;
-	state.closeAt = null;
 }
 
 function delayedCloseValve() {
@@ -88,7 +79,6 @@ module.exports = {
 		return (readValveState() === ValveStates.OPEN);
 	},
 	hasValidPin: function (pin) {
-		console.log("Checking pin '" + pin + "' in valve Controller");
 		return pin == config.PIN;
 	}
 };
