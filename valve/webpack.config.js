@@ -39,6 +39,12 @@ module.exports = {
 				inject:'body'
 			}
 		),
-		new webpack.optimize.UglifyJsPlugin()
+		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.DefinePlugin({
+			"process.env":{
+				NODE_ENV: JSON.stringify("production")
+			}
+		})
+
 	]
 };
