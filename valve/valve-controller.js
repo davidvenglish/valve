@@ -1,4 +1,4 @@
-﻿var config = require("./valve-controller-config.js");
+﻿var config = require("/home/pi/valve-control/valve/valve-controller-config.js");
 var closeValveTimeoutId = null;
 
 var ValveStates = {

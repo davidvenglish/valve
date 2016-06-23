@@ -4,14 +4,14 @@ var express = require("express");
 var app = express();
 
 var bodyParser = require("body-parser");
-var valveController = require("./valve-controller.js");
+var valveController = require("/home/pi/valve-control/valve/valve-controller.js");
 
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static("/home/pi/valve-control/valve/public"));
 
 https.createServer({
-	key: fs.readFileSync('key.pem'),
-	cert: fs.readFileSync('cert.pem')
+	key: fs.readFileSync('/home/pi/valve-control/valve/key.pem'),
+	cert: fs.readFileSync('/home/pi/valve-control/valve/cert.pem')
 }, app).listen(443, function () {
 	console.log("Server listening on 443");
 });
