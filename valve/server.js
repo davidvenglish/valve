@@ -18,7 +18,7 @@ https.createServer({
 
 app.post('/unlock', function (req, res) {
 	
-	if (valveController.hasValidPin(req.body.pin) || valveController.isValveOpen()) {
+	if (valveController.hasValidPin(req.body.pin) || (valveController.getValveState().current == "open")) {
 		
 		valveController.unlock();
 		
@@ -45,5 +45,8 @@ app.post('/lock', function (req, res) {
 });
 
 app.get('/valve-state', function (req, res) {
-	res.send(JSON.stringify(valveController.getValveState()));
+
+	var state = valveController.getValveState();
+	res.send(JSON.stringify(state));
+
 });
